@@ -1,0 +1,57 @@
+<!-- requerimiento3.html --> 
+
+<!DOCTYPE html> 
+
+<html lang="es"> 
+
+<head> 
+
+  <meta charset="UTF-8"> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Requerimiento 3 - Venta de Licencias</title> 
+
+  <style> 
+
+    body { font-family: Arial, sans-serif; margin: 2rem; } 
+
+    #form-venta { border: 1px solid #333; padding: 1rem; border-radius: 0.5rem; max-width: 400px; } 
+
+    .btn { padding: 0.5rem 1rem; cursor: pointer; border: none; border-radius: 0.3rem; } 
+
+    .btn-vender { background: #ffc107; color: #000; } 
+
+    .btn-cerrar { background: #dc3545; color: #fff; margin-bottom: 1rem; } 
+
+    label, input { display: block; margin: 0.5rem 0; } 
+
+  </style> 
+
+</head> 
+
+<body> 
+
+  <h1>Venta/Devolución de Licencias</h1> 
+
+  <div id="form-venta"> 
+
+    <button id="btn-cerrar-venta" class="btn btn-cerrar">Cancelar</button> 
+
+    <h3>Juego: <span id="venta-juego-nombre"></span></h3> 
+
+    <label for="cantidad-venta">Cantidad a devolver:</label> 
+
+    <input type="number" id="cantidad-venta" min="1" value="1"> 
+
+    <button id="btn-confirmar-venta" class="btn btn-vender">Confirmar Venta</button> 
+
+  </div> 
+
+ 
+
+  <script src="requerimiento3.js"></script> 
+
+</body> 
+
+</html> 
