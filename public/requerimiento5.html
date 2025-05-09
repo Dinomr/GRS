@@ -1,0 +1,69 @@
+<!-- requerimiento5.html --> 
+
+<!DOCTYPE html> 
+
+<html lang="es"> 
+
+<head> 
+
+  <meta charset="UTF-8"> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Requerimiento 5 - Descuento por Volumen</title> 
+
+  <style> 
+
+    body { font-family: Arial, sans-serif; margin: 2rem; } 
+
+    #form-descuento { border: 1px solid #333; padding: 1rem; border-radius: 0.5rem; max-width: 400px; } 
+
+    .btn { padding: 0.5rem 1rem; cursor: pointer; border: none; border-radius: 0.3rem; background: #0069d9; color: #fff; } 
+
+    label, input { display: block; margin: 0.5rem 0; } 
+
+  </style> 
+
+</head> 
+
+<body> 
+
+  <h1>Consultar Descuento por Volumen</h1> 
+
+  <div id="form-descuento"> 
+
+    <h3>Detalle de Compra</h3> 
+
+    <div id="items-compra"> 
+
+      <!-- Ejemplo: repetir bloque para cada juego --> 
+
+      <div class="item"> 
+
+        <label>Juego:</label> 
+
+        <input type="text" class="nombre-juego" placeholder="Nombre"> 
+
+        <label>Cantidad:</label> 
+
+        <input type="number" class="cantidad" min="1" value="1"> 
+
+      </div> 
+
+    </div> 
+
+    <button id="btn-agregar" class="btn">Agregar Juego</button> 
+
+    <button id="btn-calcular" class="btn">Calcular Descuento</button> 
+
+  </div> 
+
+  <div id="resultado" style="margin-top:1rem;"></div> 
+
+ 
+
+  <script src="requerimiento5.js"></script> 
+
+</body> 
+
+</html> 
