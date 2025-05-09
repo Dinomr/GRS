@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" 
+content="IE=edge">
+ <meta name="viewport" content="width=devicewidth, initial-scale=1.0">
+ <title>Detalle de Juego - Sección 3.a Código 
+Fuente</title>
+ <!-- Sección 3.a: Código fuente -->
+ <style>
+ /* Estilos básicos */
+ .game-list { display: flex; flex-direction: column; 
+gap: 1rem; }
+ .game-card { border: 1px solid #ccc; padding: 1rem; 
+border-radius: 0.5rem; }
+ #detalle-juego { display: none; border: 1px solid 
+#333; padding: 1rem; margin-top: 1rem; borderradius: 0.5rem; }
+ .spinner { display: none; }
+ </style>
+</head>
+<body>
+ <!-- Contenedores HTML -->
+ <div id="game-list" class="game-list"></div>
+ <div id="spinner" class="spinner">Cargando...</div>
+ <div id="detalle-juego">
+ <button id="btn-cerrar">Volver al listado</button>
+ <h2 id="titulo-juego"></h2>
+ <p id="fecha-juego"></p>
+ <p id="hora-juego"></p>
+ <p id="desc-juego"></p>
+ </div>
+ <script>
+ // Sección 3.a: Código fuente - Esqueleto de 
+funciones
+ /**
+ * Carga el listado de juegos desde la fuente de 
+datos.
+Parámetros:
+idJuego (String | Number): Identificador 
+único o nombre del juego a consultar.
+Retorno:
+Objeto JSON con todos los atributos del 
+juego:
+• nombre
+• categoria
+• tamanoMB
+• precio
+• licenciasDisponibles
+• licenciasVendidas
+• imagen
+Descripción:
+Función encargada de buscar en el 
+almacén de datos (JSON o API) la 
+información completa del juego 
+indicado por idJuego y devolverla para su 
+renderizado en la interfaz. Se encarga 
+de:
+1. Validar que idJuego existe.
+2. Realizar la consulta o lectura 
+local del recurso.
+3. Interpretar y convertir los datos y 
+devolver el objeto con todos los 
+campos para mostrar al usuario.
+ * Envía una petición GET y construye las tarjetas en 
+el contenedor #game-list.
+ */
+ function loadGameList() {
+ // TODO: Implementar 
+fetch('/public/data/juegos.json')
+ // Parsear JSON y generar dinámicamente 
+elementos .game-card
+ }
+ /**
+ * Adjunta listeners de 'click' a los botones de 
+detalle.
+ * Cada botón debe tener un atributo data-id con el 
+gameId.
+ */
+ function attachDetailListeners() {
+ // TODO: document.querySelectorAll('.btndetalle').forEach(btn => { ... });
+ }
+ /**
+ * Muestra la vista de detalle de un juego.
+ * @param {string|number} gameId - Identificador 
+del juego
+ */
+ function showDetail(gameId) {
+ // TODO:
+ // 1. Mostrar spinner
+ // 2. 
+fetch(`/public/data/juegos.json?gameId=${gameId}`)
+ // 3. Parsear respuesta y actualizar campos
+ // 4. Ocultar spinner y mostrar contenedor 
+#detalle-juego
+ }
+ /**
+ * Oculta la vista de detalle y limpia contenido si es 
+necesario.
+ */
+ function hideDetail() {
+ // TODO: document.getElementById('detallejuego').style.display = 'none';
+ }
+ // Inicialización al cargar la página
+ document.addEventListener('DOMContentLoaded', 
+() => {
+ loadGameList(); // Carga lista de juegos
+ attachDetailListeners(); // Asocia eventos de 
+detalle
+ document.getElementById('btncerrar').addEventListener('click', hideDetail);
+ });
+ </script>
+</body>
+</html>
