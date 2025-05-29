@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Game Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Una aplicación web para la venta de licencias de juegos, desarrollada con React y Flask.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+- Registro e inicio de sesión de usuarios
+- Lista de juegos disponibles con filtros y ordenamiento
+- Detalles de juegos
+- Carrito de compras con descuentos por volumen
+- Historial de compras
+- Panel de administración para gestionar juegos
 
-### `npm start`
+## Requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Python 3.8+
+- Node.js 14+
+- npm o yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación
 
-### `npm test`
+### Backend (Flask)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Crear un entorno virtual:
+```bash
+cd server
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+```
 
-### `npm run build`
+2. Instalar dependencias:
+```bash
+pip install -r requirements.txt
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Configurar variables de entorno:
+Crear un archivo `.env` en el directorio `server` con:
+```
+JWT_SECRET_KEY=tu_clave_secreta
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Iniciar el servidor:
+```bash
+python app.py
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend (React)
 
-### `npm run eject`
+1. Instalar dependencias:
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Iniciar la aplicación:
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Uso
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Acceder a `http://localhost:3000`
+2. Registrarse o iniciar sesión
+3. Explorar la lista de juegos
+4. Agregar juegos al carrito
+5. Realizar la compra
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Estructura del Proyecto
 
-## Learn More
+```
+.
+├── server/                 # Backend Flask
+│   ├── app.py             # Aplicación principal
+│   ├── auth.py            # Autenticación
+│   ├── games.py           # Gestión de juegos
+│   ├── cart.py            # Carrito y transacciones
+│   └── requirements.txt   # Dependencias Python
+│
+└── src/                   # Frontend React
+    ├── components/        # Componentes React
+    ├── App.js            # Componente principal
+    └── index.js          # Punto de entrada
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API Endpoints
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Autenticación
+- POST `/api/register` - Registro de usuarios
+- POST `/api/login` - Inicio de sesión
 
-### Code Splitting
+### Juegos
+- GET `/api/games` - Lista de juegos
+- GET `/api/games/<id>` - Detalles de un juego
+- POST `/api/games` - Crear juego (admin)
+- PUT `/api/games/<id>` - Actualizar juego (admin)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Carrito
+- POST `/api/cart/calculate` - Calcular totales
+- POST `/api/cart/checkout` - Realizar compra
+- GET `/api/transactions` - Historial de compras
 
-### Analyzing the Bundle Size
+## Contribuir
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork el repositorio
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
