@@ -2,11 +2,11 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from datetime import datetime
 from sqlalchemy import func
+from app import db, Game, Transaction, TransactionDetail
 
 cart = Blueprint('cart', __name__)
 
 def calculate_discount(items):
-    from app import Game
     # Agrupar licencias por categoría
     category_licenses = {}
     for item in items:
@@ -27,7 +27,6 @@ def calculate_discount(items):
 @cart.route('/cart/calculate', methods=['POST'])
 @jwt_required()
 def calculate_cart():
-    from app import Game
     data = request.get_json()
     items = data.get('items', [])
     
@@ -61,7 +60,6 @@ def calculate_cart():
 @cart.route('/cart/checkout', methods=['POST'])
 @jwt_required()
 def checkout():
-    from app import db, Game, Transaction, TransactionDetail
     user_id = get_jwt_identity()
     data = request.get_json()
     items = data.get('items', [])
@@ -131,7 +129,6 @@ def checkout():
 @cart.route('/transactions', methods=['GET'])
 @jwt_required()
 def get_transactions():
-    from app import Transaction, TransactionDetail, Game
     user_id = get_jwt_identity()
     
     transactions = Transaction.query.filter_by(user_id=user_id).order_by(Transaction.date.desc()).all()

@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from sqlalchemy import or_
+from app import db, Game, User
 
 games = Blueprint('games', __name__)
 
 @games.route('/games', methods=['GET'])
 def get_games():
-    from app import Game
     # Obtener parámetros de filtrado y ordenamiento
     search = request.args.get('search', '')
     category = request.args.get('category', '')
@@ -41,7 +41,6 @@ def get_games():
 
 @games.route('/games/<int:game_id>', methods=['GET'])
 def get_game_details(game_id):
-    from app import Game
     game = Game.query.get_or_404(game_id)
     return jsonify({
         'id': game.id,
@@ -57,11 +56,9 @@ def get_game_details(game_id):
 @games.route('/games', methods=['POST'])
 @jwt_required()
 def create_game():
-    from app import db, Game, User
     # Verificar si el usuario es administrador
-    user_id = get_jwt_identity()
-    user = User.query.get(user_id)
-    if not user or not user.is_admin:
+    claims = get_jwt()
+    if not claims.get('is_admin', False):
         return jsonify({'error': 'No autorizado'}), 403
     
     data = request.get_json()
@@ -96,7 +93,6 @@ def create_game():
 @games.route('/games/<int:game_id>', methods=['PUT'])
 @jwt_required()
 def update_game(game_id):
-    from app import db, Game, User
     # Verificar si el usuario es administrador
     user_id = get_jwt_identity()
     user = User.query.get(user_id)
